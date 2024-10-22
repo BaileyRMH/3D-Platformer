@@ -8,8 +8,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpForce = 5f;
 
+    [SerializeField] Transform wallCheck;
+    [SerializeField] Transform wallCheck2;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
+    [SerializeField] LayerMask wallLayer;
 
 
     void Start()
@@ -29,7 +32,18 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
 
-        
+        /*
+         wallrun attempt
+         if (Input.GetButton("left") && Input.GetButton("right") && Input.GetButton("up") && isWallrun())
+        {
+            rb.velocity = new Vector3(horizontalInput * moveSpeed, -0.1f, verticalInput * moveSpeed);
+        }
+
+        if (Input.GetButton("left") && Input.GetButton("right") && Input.GetButton("up") && isWallrun2())
+        {
+            rb.velocity = new Vector3(horizontalInput * moveSpeed, -0.01f, verticalInput * moveSpeed);
+        }
+        */
     }
 
     void Jump()
@@ -51,4 +65,13 @@ public class PlayerMovement : MonoBehaviour
         return Physics.CheckSphere(groundCheck.position, .1f, groundLayer);
     }
     
+    bool isWallrun()
+    {
+        return Physics.CheckSphere(wallCheck.position, 0.5f, wallLayer);
+    }
+
+    bool isWallrun2()
+    {
+        return Physics.CheckSphere(wallCheck2.position, 0.5f, wallLayer);
+    }
 }
