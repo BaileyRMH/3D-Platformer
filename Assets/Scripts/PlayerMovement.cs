@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
         /*
          wallrun attempt
-         if (Input.GetButton("left") && Input.GetButton("right") && Input.GetButton("up") && isWallrun())
+         if (isWallrun())
         {
             rb.velocity = new Vector3(horizontalInput * moveSpeed, -0.1f, verticalInput * moveSpeed);
         }
