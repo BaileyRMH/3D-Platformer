@@ -5,20 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDeath : MonoBehaviour
 {
+
+    bool dead = false;
+
+    private void Update()
+    {
+        if (transform.position.y < -21.36183f && !dead)
+        {
+            die();
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag ("EnemyBody"))
         {
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<Rigidbody>().isKinematic = true;
+            GetComponent<PlayerMovement>().enabled = false;
             die();
         }
     }
 
     void die()
     {
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<Rigidbody>().isKinematic = true;
-        GetComponent<PlayerMovement>().enabled = false;
         Invoke(nameof(Reload), 1.5f);
+        dead = true;
+        Debug.Log("Dead");
     }
 
 
