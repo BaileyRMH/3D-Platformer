@@ -18,6 +18,7 @@ public class ItemCollect : MonoBehaviour
             Destroy(other.gameObject);
             CDs++;
             cdsText.text = "CD's Collected: " + CDs;
+            collectSound.Play();
         }
     }
 }
