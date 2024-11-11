@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class PlayerDeath : MonoBehaviour
 {
 
+    [SerializeField] AudioSource deathSound;
+
     bool dead = false;
 
     private void Update()
@@ -30,6 +32,7 @@ public class PlayerDeath : MonoBehaviour
     void die()
     {
         Invoke(nameof(Reload), 1.5f);
+        deathSound.Play();
         dead = true;
         Debug.Log("Dead");
     }
