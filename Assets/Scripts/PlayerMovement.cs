@@ -7,6 +7,10 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpForce = 5f;
+    [SerializeField] Transform playerCamera;
+    float xRotation = 0f;
+
+    public float mouseSens;
 
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
@@ -36,6 +40,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb.velocity = new Vector3(horizontalInput * moveSpeed, rb.velocity.y, verticalInput * moveSpeed);
+
+        float mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
+
+        xRotation -= mouseY;
+
+        transform.Rotate(Vector3.up * mouseX);
+
+        
+
     }
 
     void Jump()

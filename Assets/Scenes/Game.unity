@@ -6851,6 +6851,7 @@ GameObject:
   - component: {fileID: 1233045285}
   - component: {fileID: 1233045286}
   - component: {fileID: 1233045287}
+  - component: {fileID: 1233045288}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6989,6 +6990,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   jumpForce: 5
+  playerCamera: {fileID: 1233045281}
+  mouseSens: 0
   groundCheck: {fileID: 21850923}
   groundLayer:
     serializedVersion: 2
@@ -7309,6 +7312,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1233045288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233045276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68ec20fab6d9004099c30427e485f59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mousSens: 400
+  player: {fileID: 1233045276}
 --- !u!1001 &1233938122
 PrefabInstance:
   m_ObjectHideFlags: 0

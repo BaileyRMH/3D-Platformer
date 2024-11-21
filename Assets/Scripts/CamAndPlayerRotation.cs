@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class CamAndPlayerRotation : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float mousSens;
+    public GameObject player;
+
+    
 
     // Update is called once per frame
     void Update()
     {
-        
+        float mouseX = Input.GetAxis("Mouse X") * mousSens * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mousSens * Time.deltaTime;
+
+        transform.Rotate(Vector3.up * mouseX);
+
+
     }
 }
