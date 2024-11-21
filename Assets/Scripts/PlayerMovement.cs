@@ -8,17 +8,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpForce = 5f;
 
-    [SerializeField] Transform wallCheck;
-    [SerializeField] Transform wallCheck2;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] LayerMask wallLayer;
-
+    
     [SerializeField] AudioSource jumpSound;
+
+    
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Update()
@@ -26,25 +27,15 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        rb.velocity = new Vector3(horizontalInput * moveSpeed, rb.velocity.y, verticalInput * moveSpeed);
+        Vector3 moveDirection = transform.right * horizontalInput + transform.forward * verticalInput;
+        rb.velocity = new Vector3(moveDirection.x * moveSpeed, rb.velocity.y, moveDirection.z * moveSpeed);
 
         if (Input.GetButtonDown("Jump") && isGrounded())
         {
             Jump();
         }
 
-        /*
-         wallrun attempt
-         if (isWallrun())
-        {
-            rb.velocity = new Vector3(horizontalInput * moveSpeed, -0.1f, verticalInput * moveSpeed);
-        }
-
-        if (Input.GetButton("left") && Input.GetButton("right") && Input.GetButton("up") && isWallrun2())
-        {
-            rb.velocity = new Vector3(horizontalInput * moveSpeed, -0.01f, verticalInput * moveSpeed);
-        }
-        */
+        rb.velocity = new Vector3(horizontalInput * moveSpeed, rb.velocity.y, verticalInput * moveSpeed);
     }
 
     void Jump()
@@ -67,13 +58,4 @@ public class PlayerMovement : MonoBehaviour
         return Physics.CheckSphere(groundCheck.position, .1f, groundLayer);
     }
     
-    bool isWallrun()
-    {
-        return Physics.CheckSphere(wallCheck.position, 0.5f, wallLayer);
-    }
-
-    bool isWallrun2()
-    {
-        return Physics.CheckSphere(wallCheck2.position, 0.5f, wallLayer);
-    }
 }
