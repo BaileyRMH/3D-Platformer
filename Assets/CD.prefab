@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3395398752090095296}
   - component: {fileID: 2645453419652155378}
   - component: {fileID: 3240937900171632888}
-  - component: {fileID: 5096996729017740983}
+  - component: {fileID: 6663316057323298358}
   m_Layer: 0
   m_Name: CD
   m_TagString: CD
@@ -106,7 +106,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5096996729017740983
+--- !u!114 &6663316057323298358
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3841999124416764015}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27be914042518264fb3f56c906058f6f, type: 3}
+  m_Script: {fileID: 11500000, guid: 33fbc3cb19bd0e146a2f1e442e97fabf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speedX: 0

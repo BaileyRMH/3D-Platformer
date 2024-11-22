@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce = 5f;
     [SerializeField] Transform playerCamera;
     float xRotation = 0f;
+    public float Clamp1;
+    public float Clamp2;
+
 
     public float mouseSens;
 
@@ -31,21 +34,23 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 moveDirection = transform.right * horizontalInput + transform.forward * verticalInput;
-        rb.velocity = new Vector3(moveDirection.x * moveSpeed, rb.velocity.y, moveDirection.z * moveSpeed);
+        
 
         if (Input.GetButtonDown("Jump") && isGrounded())
         {
             Jump();
         }
 
-        rb.velocity = new Vector3(horizontalInput * moveSpeed, rb.velocity.y, verticalInput * moveSpeed);
+        Vector3 moveDirection = transform.right * horizontalInput + transform.forward * verticalInput;
+        rb.velocity = new Vector3(moveDirection.x * moveSpeed, rb.velocity.y, moveDirection.z * moveSpeed);
 
         float mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
 
         xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, Clamp1, Clamp2);
 
+        playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
 
         

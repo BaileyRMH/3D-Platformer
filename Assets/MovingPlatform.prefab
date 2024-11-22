@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2412522044831588416}
   - component: {fileID: 5273857824353252631}
   - component: {fileID: 3602658959173136163}
-  - component: {fileID: 1843345991716235905}
+  - component: {fileID: 6303465746482098833}
   m_Layer: 3
   m_Name: MovingPlatform
   m_TagString: Untagged
@@ -123,7 +123,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   speed: 8
---- !u!114 &1843345991716235905
+--- !u!114 &6303465746482098833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,6 +132,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7256941052001411127}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a595437d80e56d64aa834c17b224cb62, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f00550865b49994fb26b0f4f4bd5b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
