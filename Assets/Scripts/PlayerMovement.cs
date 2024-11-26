@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float Clamp2;
 
 
-    public float mouseSens;
+    public float mouseSens = 500f;
 
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
