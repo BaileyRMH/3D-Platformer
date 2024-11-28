@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -20,13 +21,14 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] AudioSource jumpSound;
 
-    
+    Animator myAnim;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        myAnim = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded())
         {
             Jump();
+            myAnim.SetTrigger("Jump");
         }
 
         Vector3 moveDirection = transform.right * horizontalInput + transform.forward * verticalInput;
@@ -46,6 +49,9 @@ public class PlayerMovement : MonoBehaviour
 
         float mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
+
+        myAnim.SetFloat("Speed", moveDirection.magnitude);
+        myAnim.SetBool("Grounded", isGrounded());
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, Clamp1, Clamp2);
@@ -61,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
         jumpSound.Play();
+        myAnim.SetTrigger("Jump");
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -71,6 +78,9 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
     }
+
+    
+
 
     bool isGrounded()
     {
