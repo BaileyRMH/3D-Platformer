@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraRaycast : MonoBehaviour
 {
-    public GameObject lastHit;
+    /*public GameObject lastHit;
     public Vector3 collision = Vector3.zero;
     public LayerMask layer;
     public GameObject player;
@@ -38,12 +38,69 @@ public class CameraRaycast : MonoBehaviour
             targetPosition = desiredPos;             
         }
     }
-
+    */
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(collision, 0.2f);
     }
+    
+
+    public GameObject Origin;
+    public GameObject Target;
+    public GameObject Cam;
+    public float CamRange = 5f;
+    public Vector3 collision;
+    public float wallOffset;
+
+    private void Start()
+    {
+        
+    }
+
+    private void Update()
+    {
+        Vector3 Direction = Origin.transform.position - Target.transform.position;
+        Direction = Direction.normalized;
+        var ray = new Ray(Origin.transform.position, Direction);
+        if (Physics.Raycast(ray, out RaycastHit hit, CamRange))
+        {
+            Cam.transform.position = hit.point;
+            collision = hit.point - Cam.transform.position;
+        }
+        else
+        {
+            Cam.transform.position = Origin.transform.position;
+        }
+
+    }
+
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
